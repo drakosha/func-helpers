@@ -1,0 +1,23 @@
+{
+  "name": "func-utils",
+  "version": "1.0.0",
+  "description": "Functional utility functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drakosha/func-utils.git"
+  },
+  "keywords": [
+    "functional",
+    "utility"
+  ],
+  "author": "Mikhail Kostryukov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drakosha/func-utils/issues"
+  },
+  "homepage": "https://github.com/drakosha/func-utils#readme"
+}
