@@ -14,5 +14,9 @@ describe('Utils', function () {
     it('should return undefined if no key found', function () {
       assert.equal(getter('key1.key2')({ key5: { key3: 'test' } }), undefined);
     });
+
+    it('should cache functions', function () {
+      assert.equal(getter('test'), getter('test'));
+    })
   });
 });

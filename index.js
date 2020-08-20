@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   mapKeys,
   getter,
@@ -5,6 +7,8 @@ module.exports = {
   forEachKey,
   G: getter
 };
+
+const getterChache = {};
 
 function mapKeys(obj, callback) {
   const result = [];
@@ -25,9 +29,12 @@ function forEachKey(obj, callback) {
 }
 
 function getter(path) {
+  const cached = getterChache[path];
+  if (cached) return cached;
+
   path = path ? path.split('.') : [];
 
-  return ctx => {
+  return getterChache[path] = ctx => {
     let result = ctx;
 
     for (const key of path) {
