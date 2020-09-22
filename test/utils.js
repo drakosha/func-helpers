@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { getter, identity } = require('..');
+const { getter, compose, identity } = require('..');
 
 describe('Utils', function () {
   describe('getter', function () {
@@ -19,6 +19,20 @@ describe('Utils', function () {
       assert.equal(getter('test'), getter('test'));
     })
   });
+
+  describe('compose', function () {
+    it('should chain functions', function () {
+      assert.equal(
+        compose(val => val - 5, val => val * 2)(20),
+        30
+      )
+    });
+
+    it('should return loopback function if no arguments passed', function () {
+      assert.equal(compose()(55), 55);
+    });
+  });
+
   describe('identity', function () {
     it('should return function that return passed value', function () {
       assert.equal(identity(55)(87), 55);
