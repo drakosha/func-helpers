@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/drakosha/func-utils/issues"
   },
-  "homepage": "https://github.com/drakosha/func-utils#readme"
+  "homepage": "https://github.com/drakosha/func-utils#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }

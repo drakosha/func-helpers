@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { getter, compose, identity } = require('..');
+const { getter, compose, identity, env } = require('..');
 
 describe('Utils', function () {
   describe('getter', function () {
@@ -40,6 +40,21 @@ describe('Utils', function () {
 
     it('should return loopback function if no arguments passed', function () {
       assert.equal(identity()(87), 87);
+    });
+  });
+
+  describe('env', function () {
+    it('should return default value if not defined in enviroment', function () {
+      assert.equal(env('key123', 'default'), 'default');
+    });
+
+    it('should return value of enviroment variable if defined', function () {
+      process.env['test_var_123'] = 'defined';
+      assert.equal(env('test_var_123', 'default'), 'defined');
+    });
+
+    it('should throw exception if variable not defined and default is not set', function () {
+      assert.throws(() => env('test_var_12345'), Error);
     });
   });
 });
