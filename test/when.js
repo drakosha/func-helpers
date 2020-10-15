@@ -66,4 +66,10 @@ describe('When', function () {
     assert.equal(when({ key1: 'bla1', key2: 'fff' })(this.context), false);
     assert.equal(when({ key1: 'bla1', key2: 'bla2' })(this.context), true);
   });
+
+  it('should use OR operator for array input', function() {
+    assert.equal(when([{ key1: 'bla1'}, { key2: 'fff' }])(this.context), true);
+    assert.equal(when([{ key1: 'bla'}, { key2: 'bla2' }])(this.context), true);
+    assert.equal(when([{ key1: 'bla'}, { key2: 'fff' }])(this.context), false);
+  });
 });
