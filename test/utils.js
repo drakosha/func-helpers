@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { getter, compose, identity, env, groupBy } = require('..');
+const { getter, compose, identity, env, groupBy, indexBy } = require('..');
 
 describe('Utils', function () {
   describe('getter', function () {
@@ -48,6 +48,15 @@ describe('Utils', function () {
       assert.deepEqual(groupBy('id', [{ id: '6', data: '55' }, { id: '9' }]), {
         '6': [{ id: '6', data: '55' }],
         '9': [{ id: '9' }]
+      });
+    });
+  });
+
+  describe('indexBy', function () {
+    it('should return indexed hash', function () {
+      assert.deepEqual(indexBy('id', [{ id: '6', data: '55' }, { id: '9' }]), {
+        '6': { id: '6', data: '55' },
+        '9': { id: '9' }
       });
     });
   });
