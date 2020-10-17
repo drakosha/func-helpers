@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { getter, compose, identity, env } = require('..');
+const { getter, compose, identity, env, groupBy } = require('..');
 
 describe('Utils', function () {
   describe('getter', function () {
@@ -40,6 +40,15 @@ describe('Utils', function () {
 
     it('should return loopback function if no arguments passed', function () {
       assert.equal(identity()(87), 87);
+    });
+  });
+
+  describe('groupBy', function () {
+    it('should return hash with groupped objects', function () {
+      assert.deepEqual(groupBy('id', [{ id: '6', data: '55' }, { id: '9' }]), {
+        '6': [{ id: '6', data: '55' }],
+        '9': [{ id: '9' }]
+      });
     });
   });
 
