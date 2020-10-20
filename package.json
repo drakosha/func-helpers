@@ -23,5 +23,8 @@
   "directories": {
     "lib": "lib",
     "test": "test"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.0"
   }
 }
