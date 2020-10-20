@@ -72,4 +72,8 @@ describe('When', function () {
     assert.equal(when([{ key1: 'bla'}, { key2: 'bla2' }])(this.context), true);
     assert.equal(when([{ key1: 'bla'}, { key2: 'fff' }])(this.context), false);
   });
+
+  it('should check numeric equality when right side is a number', function() {
+    assert(when({ str: 1 })({ str: '1' }));
+  });
 });
