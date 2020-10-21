@@ -76,4 +76,10 @@ describe('When', function () {
   it('should check numeric equality when right side is a number', function() {
     assert(when({ str: 1 })({ str: '1' }));
   });
+
+  it('should interpret constants as booleans', function() {
+    assert.equal(when([true, false])(), true);
+    assert.equal(when([true, { key1: 'bla' }])(this.context), true);
+    assert.equal(when([false, { key1: 'bla' }])(this.context), false);
+  });
 });
