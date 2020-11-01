@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { asArray, get, getter, compose, identity, env, groupBy, indexBy } = require('..');
+const { asArray, compose, env, get, getter, groupBy, identity, indexBy } = require('..');
 
 describe('Utils', function () {
   describe('get', function() {
