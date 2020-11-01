@@ -1,7 +1,17 @@
 const assert = require('assert');
-const { asArray, getter, compose, identity, env, groupBy, indexBy } = require('..');
+const { asArray, get, getter, compose, identity, env, groupBy, indexBy } = require('..');
 
 describe('Utils', function () {
+  describe('get', function() {
+    it('should load value for arbitrary nested path', function() {
+      const obj = { root: { arr: [1, 2, { lol: 'wut', inner: [3] }] } };
+
+      assert.strictEqual(get(obj, 'root.arr.2.inner.0'), 3);
+      assert.deepStrictEqual(get(obj, 'root.arr.2'),
+        { lol: 'wut', inner: [3] });
+    });
+  });
+
   describe('getter', function () {
     it('should return function like identity', function () {
       assert.equal(getter()('test'), 'test');
