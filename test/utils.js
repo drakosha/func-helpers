@@ -1,5 +1,16 @@
 const assert = require('assert');
-const { asArray, compose, env, get, getter, groupBy, identity, indexBy, not } = require('..');
+const {
+  asArray,
+  compose,
+  env,
+  get,
+  getter,
+  groupBy,
+  identity,
+  indexBy,
+  isNone,
+  not
+} = require('..');
 
 describe('Utils', function () {
   describe('get', function() {
@@ -112,6 +123,26 @@ describe('Utils', function () {
       assert.ok(notA({ a: false }));
       assert.ok(notA({}));
       assert.ok(!notA({ a: 5 }));
+    });
+  });
+
+  describe('isNone', function() {
+    it('should return true for null or undefined', function() {
+      assert.ok(isNone(null));
+      assert.ok(isNone(undefined));
+    });
+
+    it(`should return false for 0, false or ''`, function() {
+      assert.ok(!isNone(false));
+      assert.ok(!isNone(0));
+      assert.ok(!isNone(''));
+    });
+    it('should return false for truthy values', function() {
+      assert.ok(!isNone([]));
+      assert.ok(!isNone({}));
+      assert.ok(!isNone(3));
+      assert.ok(!isNone(true));
+      assert.ok(!isNone('abc'));
     });
   });
 });
