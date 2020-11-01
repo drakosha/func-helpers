@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { getter, compose, identity, env, groupBy, indexBy } = require('..');
+const { asArray, getter, compose, identity, env, groupBy, indexBy } = require('..');
 
 describe('Utils', function () {
   describe('getter', function () {
@@ -73,6 +73,18 @@ describe('Utils', function () {
 
     it('should throw exception if variable not defined and default is not set', function () {
       assert.throws(() => env('test_var_12345'), Error);
+    });
+  });
+
+  describe('asArray', function() {
+    it('should return array as is', function() {
+      const arr = [1, 2, 3];
+      assert.strictEqual(asArray(arr), arr);
+    });
+
+    it('should wrap anything that is not an array into an array', function() {
+      const obj = {};
+      assert.deepStrictEqual(asArray(obj), [obj]);
     });
   });
 });
