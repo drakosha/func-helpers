@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { asArray, compose, env, get, getter, groupBy, identity, indexBy } = require('..');
+const { asArray, compose, env, get, getter, groupBy, identity, indexBy, not } = require('..');
 
 describe('Utils', function () {
   describe('get', function() {
@@ -95,6 +95,23 @@ describe('Utils', function () {
     it('should wrap anything that is not an array into an array', function() {
       const obj = {};
       assert.deepStrictEqual(asArray(obj), [obj]);
+    });
+  });
+
+  describe('not', function() {
+    it('should invert a result of the function supplied', function() {
+      const notA = not(getter('a'));
+
+      assert.ok(notA({ a: false }));
+      assert.ok(notA({}));
+      assert.ok(!notA({ a: 5 }));
+    });
+    it('should wrap string arg into a getter', function() {
+      const notA = not('a');
+
+      assert.ok(notA({ a: false }));
+      assert.ok(notA({}));
+      assert.ok(!notA({ a: 5 }));
     });
   });
 });
