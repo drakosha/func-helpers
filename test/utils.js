@@ -9,7 +9,8 @@ const {
   identity,
   indexBy,
   isNone,
-  not
+  not,
+  set
 } = require('..');
 
 describe('Utils', function () {
@@ -143,6 +144,20 @@ describe('Utils', function () {
       assert.ok(!isNone(3));
       assert.ok(!isNone(true));
       assert.ok(!isNone('abc'));
+    });
+  });
+
+  describe('set', function() {
+    it('sets nested object value', function() {
+      const obj = {};
+      set(obj, 'a.b.c', 3);
+
+      assert.deepStrictEqual(obj, { a: { b: { c: 3 } } });
+    });
+    it('returns the top-level object being mutated', function() {
+      const obj = {};
+
+      assert.strictEqual(set(obj, 'a.b.c', 3), obj);
     });
   });
 });
