@@ -88,4 +88,9 @@ describe('When', function () {
     assert.equal(when({ 'keyArr.includes': 'test1' })(this.context), true);
     assert.equal(when({ 'keyArr.includes': 'bla' })(this.context), false);
   });
+
+  it('should accept "excludes" modifier', function() {
+    assert.equal(when({ 'keyArr.excludes': 'test1' })(this.context), false);
+    assert.equal(when({ 'keyArr.excludes': 'bla' })(this.context), true);
+  });
 });
