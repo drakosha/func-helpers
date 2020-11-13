@@ -12,7 +12,8 @@ describe('When', function () {
         key5: {
           key6: 'test'
         }
-      }
+      },
+      keyArr: ['test', 'test1', 'test2']
     };
   });
 
@@ -81,5 +82,10 @@ describe('When', function () {
     assert.equal(when([true, false])(), true);
     assert.equal(when([true, { key1: 'bla' }])(this.context), true);
     assert.equal(when([false, { key1: 'bla' }])(this.context), false);
+  });
+
+  it('should accept "includes" modifier', function() {
+    assert.equal(when({ 'keyArr.includes': 'test1' })(this.context), true);
+    assert.equal(when({ 'keyArr.includes': 'bla' })(this.context), false);
   });
 });
